@@ -4,7 +4,8 @@
 Create summary of tv show episode without spoilers from scripts
 
 ## Abstract
-_A max 150-word description of the project question or idea, goals, dataset used. What story you would like to tell and why? What's the motivation behind your project?_
+_A max 150-word description of the project question or idea, goals, dataset used. What story you would like to tell and why? What's the motivation behind your project?
+
 This project aims to create spoiler-free summaries of TV show episodes using scripts from sitcoms like "Seinfeld," "Friends," "The Office," and "South Park." By developing a model that identifies and omits the climax and resolution stages of the episodes, we seek to generate concise and engaging episode previews without revealing key plot points. This approach preserves the viewing experience, providing a glimpse into episodes without spoiling their outcomes.
 
 
