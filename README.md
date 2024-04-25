@@ -10,9 +10,9 @@ This project aims to create summaries of tv show episodes from available scripts
 
 ## Research questions
 _A list of research questions you would like to address during the project._
-How to create a summary for a tv show episode based on the script?
-How to create a summary that does not contain spoilers?
-What's the effect of stage directions on TV script summarisation results?
+* How can we train a model to recognize the climax/resolution stage of a story?
+* How can we train a summarisation model to ignore this stage in it's summary to avoid spoilers?
+* What's the effect of stage directions on TV script summarisation results?
 
 ## Dataset
 _List the dataset(s) you want to use, and some ideas on how do you expect to get, manage, process and enrich it/them. Show you've read the docs and are familiar with some examples, and you've a clear idea on what to expect. Discuss data size and format if relevant._
