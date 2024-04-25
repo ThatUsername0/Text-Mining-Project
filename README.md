@@ -16,11 +16,11 @@ _A list of research questions you would like to address during the project._
 
 ## Dataset
 _List the dataset(s) you want to use, and some ideas on how do you expect to get, manage, process and enrich it/them. Show you've read the docs and are familiar with some examples, and you've a clear idea on what to expect. Discuss data size and format if relevant._
-We use scripts of sitcom-like TV shows available on Kaggle.
-[Seinfield](https://www.kaggle.com/datasets/thec03u5/seinfeld-chronicles)
-[Friends](https://www.kaggle.com/datasets/blessondensil294/friends-tv-series-screenplay-script)
-[The Office](https://www.kaggle.com/code/washingtongold/load-the-office-scripts/output)
-[South Park](https://www.kaggle.com/datasets/thedevastator/south-park-scripts-dataset)
+* We use the followeing scripts of sitcom-like TV shows available on Kaggle:
+* [Seinfield](https://www.kaggle.com/datasets/thec03u5/seinfeld-chronicles)
+* [Friends](https://www.kaggle.com/datasets/blessondensil294/friends-tv-series-screenplay-script)
+* [The Office](https://www.kaggle.com/code/washingtongold/load-the-office-scripts/output)
+* [South Park](https://www.kaggle.com/datasets/thedevastator/south-park-scripts-dataset)
 
 
 ## A tentative list of milestones for the project
