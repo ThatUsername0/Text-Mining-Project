@@ -5,7 +5,7 @@ Create summary of tv show episode without spoilers from scripts
 
 ## Abstract
 _A max 150-word description of the project question or idea, goals, dataset used. What story you would like to tell and why? What's the motivation behind your project?_
-This project aims to create summaries of tv show episodes from available scripts of the episodes. Our goal is that these summaries do not contain spoilers for the story in the episode. 
+* This project aims to create summaries of tv show episodes from available scripts of the episodes. Our goal is that these summaries do not contain spoilers for the story in the episode. 
 
 
 ## Research questions
