@@ -24,7 +24,7 @@ _List the dataset(s) you want to use, and some ideas on how do you expect to get
 
 
 ## A tentative list of milestones for the project
-Add here a sketch of your planning for the coming weeks. Please mention who does what.
+_Add here a sketch of your planning for the coming weeks. Please mention who does what._
 
 * Create a dataset by combining our input (scripts) and expected output (synopsis sentences)
 * Clean up dataset to a usable format
@@ -35,4 +35,4 @@ Add here a sketch of your planning for the coming weeks. Please mention who does
 
 
 ## Documentation
-This can be added as the project unfolds. You should describe, in particular, what your repo contains and how to reproduce your results.
+_This can be added as the project unfolds. You should describe, in particular, what your repo contains and how to reproduce your results._
