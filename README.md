@@ -1,5 +1,8 @@
 # Default repository template
 
+## Authors
+Seb Olsen, Piter Nicolaas, Caspar de Jong
+
 ## Title
 Create summary of tv show episode without spoilers from scripts
 
