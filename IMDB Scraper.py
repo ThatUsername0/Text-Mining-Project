@@ -15,7 +15,7 @@ def fetch_episode_descriptions(url):
     # Extract and return the text from each description
     return [desc.text for desc in descriptions]
 
-# Example URL for an IMDb TV show page (replace with the actual URL)
+# Example URL for an IMDb TV show page (Friends S1E1)
 url = 'https://www.imdb.com/title/tt0903747/episodes?season=1'
 episode_descriptions = fetch_episode_descriptions(url)
 
