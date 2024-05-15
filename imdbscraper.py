@@ -29,7 +29,7 @@ def fetch_episode_description(search_query):
             if description_tag:
                 return description_tag.text.strip()
     
-    return f"Description not found, results: {results}"
+    return f"Description not found"
 
 def get_season_episode(filename):
     match = re.match(r'S(\d+)E(\d+)', filename)
@@ -60,7 +60,7 @@ def descriptions_from_scripts(scripts_dir):
         
         # Construct search query for IMDb
         episode_title = ' '.join(filename.split()[1:]).replace('.txt', '')
-        search_query = f"Friends {season_episode} {episode_title}"
+        search_query = f"Friends {season_episode} The One {episode_title}"
         
         # Fetch episode description from IMDb
         description = fetch_episode_description(search_query)
