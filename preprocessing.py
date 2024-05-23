@@ -61,4 +61,4 @@ def preprocess(data, train_model=False):
             ]
             tokenized_episodes.append(tokenized_scenes)
         data["Tokenized_Scenes"] = tokenized_episodes
-    return data
+    return data, data, data

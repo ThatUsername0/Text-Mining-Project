@@ -24,7 +24,9 @@ def main():
         df.to_csv(processed_data_file, index=False)
 
     # Preprocess the data
-    preprocessed_data = preprocessing.preprocess(df)
+    preprocessed_data, tokenized_scenes, tokenized_descriptions = (
+        preprocessing.preprocess(df)
+    )
 
     csv_filename = "data_processed/friends_processed.csv"
     preprocessed_data.to_csv(csv_filename, index=False)
