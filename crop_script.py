@@ -4,7 +4,6 @@ def climax_scene(scenes):
     scenes_counts = []
     for scene in scenes:
         charactercount = 0
-        scene.split()
         for w in scene:
             if friendsname(w):
                 charactercount +=1
