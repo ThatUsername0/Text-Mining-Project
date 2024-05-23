@@ -1,5 +1,4 @@
 import torch
-import os
 from transformers import T5ForConditionalGeneration, T5Tokenizer
 import pandas as pd
 from preprocessing import preprocess_script
@@ -66,5 +65,3 @@ results_df = pd.DataFrame({
 
 # Save the results to a CSV file
 results_df.to_csv("generated_script_with_description.csv", index=False)
-
-print("Results saved to generated_script_with_description.csv")
