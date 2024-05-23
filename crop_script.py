@@ -1,14 +1,16 @@
 import pandas as pd
 
-def climax_scene(scenes):
+def climax_scene(col):
     scenes_counts = []
-    for scene in scenes:
-        charactercount = 0
-        scene.split()
-        for w in scene:
-            if friendsname(w):
-                charactercount +=1
-        scenes_counts.append(charactercount)
+    for scenes in col:
+        for scene in scenes:
+            charactercount = 0
+            scene.split()
+            for w in scene:
+                if friendsname(w):
+                    print('1')
+                    charactercount +=1
+            scenes_counts.append(charactercount)
     
     max_index = 0
     max_count = 0

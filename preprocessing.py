@@ -21,18 +21,20 @@ def preprocess_script(script):
     
     return cleaned_scenes
 
-def preprocess(data):
+def preprocess(data, train_model=False):
     data['Script'] = data['Script'].astype(str)
     data['Description'] = data['Description'].astype(str)
     
     # Apply the custom script preprocessing to partition scripts into scenes
     data['Scenes'] = data['Script'].apply(preprocess_script)
 
-    # Flatten the scenes into a single list and tokenize
-    all_scenes = [scene for scenes in data['Scenes'] for scene in scenes]
-    tokenized_scenes = tokenizer(all_scenes, padding='max_length', truncation=True, max_length=512)
+    if train_model:
+        # Flatten the scenes into a single list and tokenize
+        all_scenes = [scene for scenes in data['Scenes'] for scene in scenes]
+        tokenized_scenes = tokenizer(all_scenes, padding='max_length', truncation=True, max_length=512)
+        
+        # Tokenize the descriptions
+        tokenized_descriptions = tokenizer(list(data['Description']), padding='max_length', truncation=True, max_length=512)
+        return data, tokenized_scenes, tokenized_descriptions
     
-    # Tokenize the descriptions
-    tokenized_descriptions = tokenizer(list(data['Description']), padding='max_length', truncation=True, max_length=512)
-    
-    return data, tokenized_scenes, tokenized_descriptions
+    return data
