@@ -3,42 +3,62 @@ import pandas as pd
 from transformers import T5Tokenizer
 import spacy
 
-nlp = spacy.load("en_core_web_sm") 
-tokenizer = T5Tokenizer.from_pretrained('t5-base', model_max_length=512)
+nlp = spacy.load("en_core_web_sm")
+tokenizer = T5Tokenizer.from_pretrained("t5-base", model_max_length=512)
+
 
 def preprocess_script(script):
     # Remove non-dialogue text like scene descriptions and stage directions
-    script = re.sub(r'\(.*?\)', '', script)
-    
+    script = re.sub(r"\(.*?\)", "", script)
+
     # Split the script into scenes based on regex pattern
-    scenes = re.split(r'\[Scene:.*?\]', script)
-    
+    scenes = re.split(r"\[Scene:.*?\]", script)
+
     cleaned_scenes = []
     for scene in scenes:
         if scene.strip():
             # Remove names and colons before dialogue
-            scene_lines = [re.sub(r'^[^:]+:\s*', '', line).strip() for line in scene.split('\n') if line.strip()]
-            cleaned_scene = ' '.join(scene_lines)
+            scene_lines = [
+                re.sub(r"^[^:]+:\s*", "", line).strip()
+                for line in scene.split("\n")
+                if line.strip()
+            ]
+            cleaned_scene = " ".join(scene_lines)
             cleaned_scenes.append(cleaned_scene)
-    
+
     return cleaned_scenes
 
+
 def preprocess(data, train_model=False):
-    data['Script'] = data['Script'].astype(str)
-    data['Description'] = data['Description'].astype(str)
-    
+    data["Script"] = data["Script"].astype(str)
+    data["Description"] = data["Description"].astype(str)
+
     # Apply the custom script preprocessing to partition scripts into scenes
-    data['Scenes'] = data['Script'].apply(preprocess_script)
+    data["Scenes"] = data["Script"].apply(preprocess_script)
 
     if train_model:
         # Flatten the scenes into a single list and tokenize
-        all_scenes = [scene for scenes in data['Scenes'] for scene in scenes]
-        tokenized_scenes = tokenizer(all_scenes, padding='max_length', truncation=True, max_length=512)
-        
+        all_scenes = [scene for scenes in data["Scenes"] for scene in scenes]
+        tokenized_scenes = tokenizer(
+            all_scenes, padding="max_length", truncation=True, max_length=512
+        )
+
         # Tokenize the descriptions
-        tokenized_descriptions = tokenizer(list(data['Description']), padding='max_length', truncation=True, max_length=512)
+        tokenized_descriptions = tokenizer(
+            list(data["Description"]),
+            padding="max_length",
+            truncation=True,
+            max_length=512,
+        )
         return data, tokenized_scenes, tokenized_descriptions
     else:
-        all_scenes = [scene for scenes in data['Scenes'] for scene in scenes]
-        tokenized_scenes = nlp()
+        all_scenes = [scene for scenes in data["Scenes"] for scene in scenes]
+        # tokenized_scenes = [nlp(scene) for scene in data["Scenes"]]
+        tokenized_episodes = []
+        for episode in data["Scenes"]:
+            tokenized_scenes = [
+                [token.text for token in nlp(scene)] for scene in episode
+            ]
+            tokenized_episodes.append(tokenized_scenes)
+        data["Tokenized_Scenes"] = tokenized_episodes
     return data
