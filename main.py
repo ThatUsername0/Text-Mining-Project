@@ -1,6 +1,8 @@
 import os
 import pandas as pd
-import imdb_scraper, model_training, preprocessing, crop_script
+import imdb_scraper
+import model_training
+import preprocessing
 
 def main():
     # Directory containing the Friends episodes scripts
@@ -21,12 +23,11 @@ def main():
         df.to_csv(processed_data_file, index=False)
 
     # Preprocess the data
-    preprocessed_data, tokenized_scenes, tokenized_descriptions = preprocessing.preprocess(df, train_model=True)
-
-    print(crop_script.climax_scene(preprocessed_data['Scenes'].iloc(0)))
+    preprocessed_data, tokenized_scenes, tokenized_descriptions = preprocessing.preprocess(df)
     
     # Train the model
     trained_model = model_training.train_model(preprocessed_data, model_size='small', verbose=True)
+
 
 if __name__ == "__main__":
     main()
