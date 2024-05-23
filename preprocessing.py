@@ -1,7 +1,9 @@
 import re
 import pandas as pd
 from transformers import T5Tokenizer
+import spacy
 
+nlp = spacy.load("en_core_web_sm") 
 tokenizer = T5Tokenizer.from_pretrained('t5-base', model_max_length=512)
 
 def preprocess_script(script):
@@ -36,5 +38,7 @@ def preprocess(data, train_model=False):
         # Tokenize the descriptions
         tokenized_descriptions = tokenizer(list(data['Description']), padding='max_length', truncation=True, max_length=512)
         return data, tokenized_scenes, tokenized_descriptions
-    
+    else:
+        all_scenes = [scene for scenes in data['Scenes'] for scene in scenes]
+        tokenized_scenes = nlp()
     return data
