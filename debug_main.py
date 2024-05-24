@@ -24,4 +24,8 @@ print("Preprocessing...")
 preprocessed_data, _, _ = preprocessing.preprocess(df)
 print("Preprocessing done")
 
-print(crop_script.climax_scene((preprocessed_data['Tokenized_Scenes'].iloc[0])))
+climax_positions = []
+for episode in preprocessed_data['Tokenized_Scenes']:
+    climax_positions.append(crop_script.find_climax_positions((episode)))
+
+print(climax_positions)
