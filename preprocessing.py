@@ -52,13 +52,14 @@ def preprocess(data, train_model=False):
         )
         return data, tokenized_scenes, tokenized_descriptions
     else:
-        all_scenes = [scene for scenes in data["Scenes"] for scene in scenes]
-        # tokenized_scenes = [nlp(scene) for scene in data["Scenes"]]
+        counter = 1
         tokenized_episodes = []
         for episode in data["Scenes"]:
-            tokenized_scenes = [
-                [token.text for token in nlp(scene)] for scene in episode
-            ]
+            if counter < 5:
+                tokenized_scenes = [
+                    [token.text for token in nlp(scene)] for scene in episode
+                ]
+                counter += 1
             tokenized_episodes.append(tokenized_scenes)
         data["Tokenized_Scenes"] = tokenized_episodes
-    return data, data, data
+    return data, None, None
