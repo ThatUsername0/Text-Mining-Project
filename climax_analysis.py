@@ -44,7 +44,7 @@ climax_positions = find_climax_positions(preprocessed_data)
 preprocessed_data["Climax_Position_Percentage"] = climax_positions
 
 # Bin the climax positions
-bins = np.linspace(0, 100, 25)  # 25 bins from 0% to 100%
+bins = np.linspace(0, 100, 20)  # 20 bins from 0% to 100%
 preprocessed_data['Climax_Position_Bin'] = pd.cut(preprocessed_data["Climax_Position_Percentage"], bins)
 
 # Calculate the frequency of each bin
@@ -64,6 +64,6 @@ plt.figure(figsize=(12, 6))
 plt.plot(x_smooth, y_smooth)
 plt.xlabel('Climax Position (%)')
 plt.ylabel('Frequency')
-plt.title('Frequency of Climax Position Through Episodes (First Approximation)')
+plt.title('Frequency of Climax Position Through Episodes')
 plt.grid(True)
 plt.show()
