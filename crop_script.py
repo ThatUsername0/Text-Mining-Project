@@ -43,7 +43,7 @@ def climax_scene(scenes, start_from_percentage=40):
 
     return scenes[max_index], max_index + start_index
 
-def find_climax_positions(data, start_from_percentage=40):
+def find_climax_positions(data, start_from_percentage=40, verbose=True):
     climax_positions = []
     for episode in data["Tokenized_Scenes"]:
         if len(episode) <= 1:
@@ -60,7 +60,8 @@ def find_climax_positions(data, start_from_percentage=40):
         climax_percentage = (climax_word_count / word_count) * 100
         climax_positions.append(climax_percentage)
 
-        # Print the scene with the highest concentration for testing
-        print(f"\n\nHighest concentration scene for episode {len(climax_positions)}: {climax_scene_text}")
+        if verbose:
+            # Print the scene with the highest concentration for testing
+            print(f"\n\nHighest concentration scene for episode {len(climax_positions)}: {climax_scene_text}")
 
     return climax_positions

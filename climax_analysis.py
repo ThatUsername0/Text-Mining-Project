@@ -9,7 +9,6 @@ from scipy.interpolate import make_interp_spline
 from crop_script import find_climax_positions
 from summarisation import summarise_script
 
-
 # Directory containing the Friends episodes scripts
 scripts_dir = 'data/friends'
 series_name = os.path.basename(scripts_dir)
@@ -42,7 +41,7 @@ else:
     print("Preprocessing done")
 
 # Calculate the climax positions for each episode
-climax_positions = find_climax_positions(preprocessed_data, start_from_percentage=40)
+climax_positions = find_climax_positions(preprocessed_data, start_from_percentage=40, verbose=False)
 preprocessed_data["Climax_Position_Percentage"] = climax_positions
 
 # Generate summaries with progress bar and print each summary
