@@ -1,10 +1,13 @@
 import os
 import pandas as pd
 import matplotlib.pyplot as plt
-import imdb_scraper, preprocessing
 import numpy as np
+import imdb_scraper
+import preprocessing
+from tqdm import tqdm
 from scipy.interpolate import make_interp_spline
 from crop_script import find_climax_positions
+from summarisation import summarise_script
 
 
 # Directory containing the Friends episodes scripts
@@ -38,10 +41,22 @@ else:
     preprocessed_data.to_csv(preprocessed_data_file, index=False)
     print("Preprocessing done")
 
-
 # Calculate the climax positions for each episode
-climax_positions = find_climax_positions(preprocessed_data)
+climax_positions = find_climax_positions(preprocessed_data, start_from_percentage=40)
 preprocessed_data["Climax_Position_Percentage"] = climax_positions
+
+# Generate summaries with progress bar and print each summary
+summaries = []
+for idx, row in tqdm(preprocessed_data.iterrows(), total=preprocessed_data.shape[0], desc="Summarizing"):
+    summary = summarise_script(row["Tokenized_Scenes"], row["Climax_Position_Percentage"])
+    summaries.append(summary)
+    print(f"Episode {idx + 1} Summary:\n{summary}\n")
+
+preprocessed_data["Summary"] = summaries
+
+# Save the data with summaries
+summary_data_file = f'data_processed/{series_name}_summaries.csv'
+preprocessed_data.to_csv(summary_data_file, index=False)
 
 # Bin the climax positions
 bins = np.linspace(0, 100, 20)  # 20 bins from 0% to 100%

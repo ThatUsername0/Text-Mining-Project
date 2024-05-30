@@ -1,27 +1,3 @@
-def climax_scene(scenes):
-    if len(scenes) <= 1:
-        return [], -1  # Not enough scenes to process
-
-    scenes_concentration = []
-    scenes = scenes[1:]  # Remove the first scene (title)
-    
-    for scene in scenes:
-        charactercount = 0
-        total_words = len(scene)
-        for w in scene:
-            if friendsname(w) and len(w) >= 4:
-                charactercount += 1
-        concentration = (charactercount / total_words) * 100 if total_words > 0 else 0
-        scenes_concentration.append(concentration)
-    
-    max_index = 0
-    max_concentration = 0
-    for idx, concentration in enumerate(scenes_concentration):
-        if concentration > max_concentration:
-            max_index = idx
-            max_concentration = concentration
-    return scenes[max_index], max_index
-
 def friendsname(w):
     friends = [
         "Phoebe",
@@ -41,7 +17,33 @@ def friendsname(w):
             return True
     return False
 
-def find_climax_positions(data):
+def climax_scene(scenes, start_from_percentage=40):
+    if len(scenes) <= 1:
+        return [], -1  # Not enough scenes to process
+
+    scenes_concentration = []
+    start_index = int(len(scenes) * (start_from_percentage / 100))
+    scenes = scenes[start_index:]  # Start from the specified percentage
+
+    for scene in scenes:
+        charactercount = 0
+        total_words = len(scene)
+        for w in scene:
+            if friendsname(w) and len(w) >= 4:
+                charactercount += 1
+        concentration = (charactercount / total_words) * 100 if total_words > 0 else 0
+        scenes_concentration.append(concentration)
+
+    max_index = 0
+    max_concentration = 0
+    for idx, concentration in enumerate(scenes_concentration):
+        if concentration > max_concentration:
+            max_index = idx
+            max_concentration = concentration
+
+    return scenes[max_index], max_index + start_index
+
+def find_climax_positions(data, start_from_percentage=40):
     climax_positions = []
     for episode in data["Tokenized_Scenes"]:
         if len(episode) <= 1:
@@ -49,7 +51,7 @@ def find_climax_positions(data):
             continue
 
         word_count = sum(len(scene) for scene in episode)
-        climax_scene_text, climax_pos = climax_scene(episode)
+        climax_scene_text, climax_pos = climax_scene(episode, start_from_percentage)
         if climax_pos == -1:
             climax_positions.append(0)
             continue
