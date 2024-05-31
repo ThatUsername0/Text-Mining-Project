@@ -44,19 +44,6 @@ else:
 climax_positions = find_climax_positions(preprocessed_data, start_from_percentage=40, verbose=False)
 preprocessed_data["Climax_Position_Percentage"] = climax_positions
 
-# Generate summaries with progress bar and print each summary
-summaries = []
-for idx, row in tqdm(preprocessed_data.iterrows(), total=preprocessed_data.shape[0], desc="Summarizing"):
-    summary = summarise_script(row["Tokenized_Scenes"], row["Climax_Position_Percentage"])
-    summaries.append(summary)
-    print(f"Episode {idx + 1} Summary:\n{summary}\n")
-
-preprocessed_data["Summary"] = summaries
-
-# Save the data with summaries
-summary_data_file = f'data_processed/{series_name}_summaries.csv'
-preprocessed_data.to_csv(summary_data_file, index=False)
-
 # Bin the climax positions
 bins = np.linspace(0, 100, 20)  # 20 bins from 0% to 100%
 preprocessed_data['Climax_Position_Bin'] = pd.cut(preprocessed_data["Climax_Position_Percentage"], bins)
@@ -81,3 +68,16 @@ plt.ylabel('Frequency')
 plt.title('Frequency of Climax Position Through Episodes')
 plt.grid(True)
 plt.show()
+
+# Generate summaries with progress bar and print each summary
+summaries = []
+for idx, row in tqdm(preprocessed_data[:5].iterrows(), total=preprocessed_data.shape[0], desc="Summarizing"):
+    summary = summarise_script(row["Tokenized_Scenes"], row["Climax_Position_Percentage"])
+    summaries.append(summary)
+    print(f"Episode {idx + 1} Summary:\n{summary}\n")
+
+preprocessed_data["Summary"] = summaries
+
+# Save the data with summaries
+summary_data_file = f'data_processed/{series_name}_summaries.csv'
+preprocessed_data.to_csv(summary_data_file, index=False)

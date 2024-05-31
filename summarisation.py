@@ -1,11 +1,9 @@
-from transformers import AutoTokenizer, AutoModelForSeq2SeqLM
+import openai
 from sumy.parsers.plaintext import PlaintextParser
 from sumy.nlp.tokenizers import Tokenizer
 from sumy.summarizers.lsa import LsaSummarizer
 
-# Initialize the tokenizer and model for long-t5 with specified model_max_length
-tokenizer = AutoTokenizer.from_pretrained("google/long-t5-tglobal-base", model_max_length=7500, legacy=False)
-model = AutoModelForSeq2SeqLM.from_pretrained("google/long-t5-tglobal-base")
+openai.api_key = ""
 
 def extractive_summary(text, sentence_count=5):
     parser = PlaintextParser.from_string(text, Tokenizer("english"))
@@ -32,8 +30,19 @@ def summarise_script(tokenized_scenes, climax_position_percentage):
         + extractive_text
     )
 
-    # Tokenize the input and generate the summary
-    inputs = tokenizer(input_text, return_tensors="pt", max_length=7500, truncation=True)
-    summary_ids = model.generate(inputs.input_ids, max_length=150, min_length=40, length_penalty=2.0, num_beams=4, early_stopping=True)
-    summary = tokenizer.decode(summary_ids[0], skip_special_tokens=True)
+    # Call OpenAI API for summarization
+    response = openai.ChatCompletion.create(
+        model="gpt-3.5-turbo",
+        messages=[
+            {"role": "system", "content": "You are a helpful assistant."},
+            {"role": "user", "content": input_text}
+        ],
+        max_tokens=150,
+        temperature=0.7,
+        top_p=1,
+        frequency_penalty=0,
+        presence_penalty=0
+    )
+    
+    summary = response.choices[0].message["content"].strip()
     return summary
