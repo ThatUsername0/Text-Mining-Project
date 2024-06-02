@@ -1,30 +1,24 @@
-# Default repository template
-
 ## Authors
 Seb Olsen, Piter Nicolaas, Caspar de Jong
 
 ## Title
-Create summary of tv show episode without spoilers from scripts
+Creating spoiler-free summaries of sitcom television screenplays
 
 ## Abstract
 _A max 150-word description of the project question or idea, goals, dataset used. What story you would like to tell and why? What's the motivation behind your project?_
 
-This project aims to create spoiler-free summaries of TV show episodes using scripts from sitcoms like "Seinfeld," "Friends," "The Office," and "South Park." By developing a model that identifies and omits the climax and resolution stages of the episodes, we seek to generate concise and engaging episode previews without revealing key plot points. This approach preserves the viewing experience, providing a glimpse into episodes without spoiling their outcomes.
+This project aims to create spoiler-free summaries of TV show episodes using scripts from the sitcom Friends. By developing a model that identifies and omits the climax and resolution stages of the episodes, we seek to generate concise and engaging episode previews without revealing key plot points. This approach preserves the viewing experience, providing a glimpse into episodes without spoiling their outcomes.
 
 
 ## Research questions
 _A list of research questions you would like to address during the project._
 * How can we train a model to recognize the climax/resolution stage of a story?
 * How can we train a summarisation model to ignore this stage in it's summary to avoid spoilers?
-* What's the effect of stage directions on TV script summarisation results?
 
 ## Dataset
 _List the dataset(s) you want to use, and some ideas on how do you expect to get, manage, process and enrich it/them. Show you've read the docs and are familiar with some examples, and you've a clear idea on what to expect. Discuss data size and format if relevant._
-* We use the followeing scripts of sitcom-like TV shows available on Kaggle:
-* [Seinfeld](https://www.kaggle.com/datasets/thec03u5/seinfeld-chronicles)
-* [Friends](https://www.kaggle.com/datasets/blessondensil294/friends-tv-series-screenplay-script)
-* [The Office](https://www.kaggle.com/code/washingtongold/load-the-office-scripts/output)
-* [South Park](https://www.kaggle.com/datasets/thedevastator/south-park-scripts-dataset)
+* We use the followeing dataset of friends episode scripts available on Kaggle:
+* [Friends dataset](https://www.kaggle.com/datasets/blessondensil294/friends-tv-series-screenplay-script)
 
 
 ## A tentative list of milestones for the project
@@ -39,4 +33,5 @@ _Add here a sketch of your planning for the coming weeks. Please mention who doe
 
 
 ## Documentation
-_This can be added as the project unfolds. You should describe, in particular, what your repo contains and how to reproduce your results._
+
+
