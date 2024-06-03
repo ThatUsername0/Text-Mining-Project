@@ -33,5 +33,23 @@ _Add here a sketch of your planning for the coming weeks. Please mention who doe
 
 
 ## Documentation
+```data```: contains raw script data
 
+```data_processed```: contains preprocessed script data
+
+```results```: contains model runs
+
+```climax_analysis.py```: integrates calls to climax analysis model + summarisation model with preprocessing
+
+```crop_script.py```: contains climax analysis model
+
+```imdb_scraper.py```: contains imdb webscraper
+
+```main.py```: integrates preprocessing and model training
+
+```model_predictions.py```: uses pretrained model to predict descriptions from script data
+
+```model_training.py```: fine-tunes T5-small model
+
+```preprocessing.py```: preprocesses data
 
